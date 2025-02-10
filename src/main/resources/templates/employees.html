@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+           <div class="p-4">
+               <h1>Employee List</h1>
+               <div>
+                   <a th:href="@{/add-employee}" type="button" class="btn btn-primary" data-toggle="modal"
+                           data-target="#addEmployeeModal">
+                       Add Employee
+                   </a>
+               </div>
+               <div class="mt-5">
+                   <form th:action="@{/employees}" method="get">
+                       <div class="input-group mb-3">
+                           <input name="searchText" type="text" class="form-control" placeholder="search.." >
+                           <button  class="btn btn-outline-secondary" type="submit" id="button-addon2">Search!</button>
+                       </div>
+                   </form>
+               </div>
+               <div>
+                   <div th:if="${searchText}" class="alert alert-warning alert-dismissible fade show"
+                        role="alert">
+                       You are searching for  <strong th:text="${searchText}"></strong>
+                       <a th:href="@{/employees}" type="button" class="btn-close" data-bs-dismiss="alert"
+                          aria-label="Close"></a>
+                   </div>
+               </div>
+               <table class="table table-hover table-striped">
+                   <thead>
+                   <tr>
+                       <th>Id</th>
+                       <th>Name</th>
+                       <th>Surname</th>
+                       <th>Email</th>
+                       <th>Proceesses</th>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   <tr th:each="employee : ${employees}">
+                       <td th:text="${employee.id}"></td>
+                       <td th:text="${employee.name}"></td>
+                       <td th:text="${employee.surname}"></td>
+                       <td th:text="${employee.email}"></td>
+                       <td><span><a th:href="@{/employees/{id}(id=${employee.id})}" class="btn btn-success">Detail
+                       </a></span><a
+                               th:href="@{/employees/update/{id}(id=${employee.id})}"
+                               class="btn btn-warning">
+                           Edit</a>
+                           <span><a
+                               class="btn btn-danger" th:href="@{/employee/delete/{id}(id=${employee.id})}">Delete</a></span></td>
+                   </tr>
+                   </tbody>
+               </table>
+           </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

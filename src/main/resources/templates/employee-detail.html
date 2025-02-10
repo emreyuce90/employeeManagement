@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1>Employee Details</h1>
+                <i>Employee Id:</i><p th:text="${employee.id}"></p>
+                <i>Employee Name:</i><p th:text="${employee.name}"></p>
+                <i>Employee Surname:</i><p th:text="${employee.surname}"></p>
+                <i>Employee Email:</i><p th:text="${employee.email}"></p>
+            </div>
+        </div>
+        <a class="btn btn-success" th:href="@{/employees}">Come Back!</a>
+    </div>
+</div>
+</body>
+</html>
